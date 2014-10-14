@@ -1,4 +1,4 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Tutorial : MonoBehaviour {
@@ -21,9 +21,8 @@ public class Tutorial : MonoBehaviour {
 
 	private double startTime = Time.time;
 
-	void OnGUI() {
-
-
+	void OnGUI()
+    {
 		Rect windowRect = new Rect(Screen.width*xloc, Screen.height*yloc, Screen.width*width, Screen.height*height);
 		windowRect = GUI.Window(0, windowRect, DoMyWindow, "Merging");
 	}

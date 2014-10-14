@@ -60,6 +60,8 @@ namespace BuildingBlocks.CubeFinger
             {
                 pickedObject.GetComponent<BlockBehaviour>().Remove();
                 Renderer.IsObjectRemoved = true;
+
+                GameObject.Find("GuiOverlay").GetComponent<BuildingBlocks.GUI.InGameOverlay>().SwitchMode();
             }
         }
 

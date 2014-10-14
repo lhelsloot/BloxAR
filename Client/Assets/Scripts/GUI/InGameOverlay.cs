@@ -65,7 +65,7 @@ namespace BuildingBlocks.GUI
             Color color = trashcanSelected ? Color.red : Color.white;
             if (Icon.IsPressed(new Rect(xpos, Screen.width * VIEW_SELECTOR_TOP, size, size), TrashcanIcon, color))
             {
-                switchMode();
+                SwitchMode();
             }
         }
 
@@ -77,7 +77,7 @@ namespace BuildingBlocks.GUI
             Color color = trashcanSelected ? Color.white : Color.green;
             if (Icon.IsPressed(new Rect(xpos, Screen.width * VIEW_SELECTOR_TOP, size, size), ConstructionIcon, color))
             {
-                switchMode();
+                SwitchMode();
             }
         }
 
@@ -94,7 +94,7 @@ namespace BuildingBlocks.GUI
             }
         }
 
-        private void switchMode()
+        public void SwitchMode()
         {
             trashcanSelected = !trashcanSelected;
             ICubeFinger cubeFinger = Player.Player.LocalPlayer.CubeFinger;
