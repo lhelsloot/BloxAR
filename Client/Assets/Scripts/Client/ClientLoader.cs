@@ -11,9 +11,18 @@ namespace BuildingBlocks.Client
 
         void Start()
         {
+            if (!CameraDevice.Instance.SetFocusMode(CameraDevice.FocusMode.FOCUS_MODE_CONTINUOUSAUTO))
+            {
+                InvokeRepeating("setFocus", 10f, 10f);
+            }
             UnityEngine.Input.compass.enabled = true;
             Client = new Client(new NetworkWrapper());
             Client.ConnectToServer(QRScanner.IP ?? IP, QRScanner.Port ?? Port);
+        }
+
+        void setFocus()
+        {
+            CameraDevice.Instance.SetFocusMode(CameraDevice.FocusMode.FOCUS_MODE_TRIGGERAUTO)
         }
 
         void OnGUI()
