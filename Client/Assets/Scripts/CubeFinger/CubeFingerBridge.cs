@@ -7,6 +7,8 @@ namespace BuildingBlocks.CubeFinger
     public class CubeFingerBridge : MonoBehaviour, ITrackerEventHandler
     {
         public BaseCubeFinger Finger;
+        private bool showFinger;
+        private string target;
 
         void Awake()
         {
@@ -44,46 +46,70 @@ namespace BuildingBlocks.CubeFinger
 
         public void OnTrackablesUpdated()
         {
-            Finger.Update();
+            if (showFinger)
+            {
+                Finger.Update();
+            }
         }
 
         [RPC]
         void SetPersonalFinger()
         {
-            Finger.RPC_SetPersonalFinger();
+            if (showFinger)
+            {
+                Finger.RPC_SetPersonalFinger();
+            }
         }
 
         [RPC]
         void SetFingerParent(string parent)
         {
-            Finger.RPC_SetFingerParent(parent);
+            this.target = parent;
+            showFinger = Player.Player.LocalPlayer != null && Player.Player.LocalPlayer.Team != null && target == Player.Player.LocalPlayer.Team.Target;
+            if (showFinger)
+            {
+                Finger.RPC_SetFingerParent(parent);
+            }
         }
 
         [RPC]
         void SetFingerMode(int mode)
         {
-            Finger.RPC_SetFingerMode(mode);
+            showFinger = Player.Player.LocalPlayer != null && Player.Player.LocalPlayer.Team != null && target == Player.Player.LocalPlayer.Team.Target;
+            if (showFinger)
+            {
+                Finger.RPC_SetFingerMode(mode);
+            }
         }
 
         [RPC]
         void ShowFinger(int show)
         {
-            CubeFingerRenderer renderer = Finger.Renderer as CubeFingerRenderer;
-            renderer.RPC_ShowFinger(show);
+            if (showFinger)
+            {
+                CubeFingerRenderer renderer = Finger.Renderer as CubeFingerRenderer;
+                renderer.RPC_ShowFinger(show);
+            }
         }
 
         [RPC]
         void ColorFinger(Vector3 color)
         {
-            CubeFingerRenderer renderer = Finger.Renderer as CubeFingerRenderer;
-            renderer.RPC_ColorFinger(color);
+            if (showFinger)
+            {
+                CubeFingerRenderer renderer = Finger.Renderer as CubeFingerRenderer;
+                renderer.RPC_ColorFinger(color);
+            }
         }
 
         [RPC]
         void MoveFinger(NetworkViewID viewId, Vector3 displacement)
         {
-            CubeFingerRenderer renderer = Finger.Renderer as CubeFingerRenderer;
-            renderer.RPC_MoveFinger(viewId, displacement);
+            if (showFinger)
+            {
+                CubeFingerRenderer renderer = Finger.Renderer as CubeFingerRenderer;
+                renderer.RPC_MoveFinger(viewId, displacement);
+            }
         }
     }
 }
