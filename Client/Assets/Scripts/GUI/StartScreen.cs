@@ -18,7 +18,6 @@ namespace BuildingBlocks.GUI
         {
             drawTitle();
             drawButtons();
-            handleQuit();
         }
 
         private void drawTitle()
@@ -59,14 +58,6 @@ namespace BuildingBlocks.GUI
             {
                 TeamSelector.IsSpectator = true;
                 Application.LoadLevel(Application.loadedLevel + 1);
-            }
-        }
-
-        private void handleQuit()
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
-            {
-                Application.Quit();
             }
         }
     }

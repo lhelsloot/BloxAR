@@ -22,7 +22,7 @@ namespace BuildingBlocks.Client
 
         void setFocus()
         {
-            CameraDevice.Instance.SetFocusMode(CameraDevice.FocusMode.FOCUS_MODE_TRIGGERAUTO)
+            CameraDevice.Instance.SetFocusMode(CameraDevice.FocusMode.FOCUS_MODE_TRIGGERAUTO);
         }
 
         void OnGUI()

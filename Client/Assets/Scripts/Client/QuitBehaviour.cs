@@ -16,6 +16,8 @@ namespace BuildingBlocks.Client
                         Application.Quit();
                         break;
                     case 2: // StartScreenScene
+                        Application.LoadLevel(1);
+                        break;
                     case 3: // Client
                         Application.LoadLevel(Application.loadedLevel - 1);
                         break;
