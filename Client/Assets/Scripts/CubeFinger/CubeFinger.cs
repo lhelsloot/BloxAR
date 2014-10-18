@@ -22,7 +22,7 @@ namespace BuildingBlocks.CubeFinger
 
         public override void Update()
         {
-            if (ImageTarget != null && ImageTarget.CurrentStatus != TrackableBehaviour.Status.NOT_FOUND)
+            if (ImageTarget != null)
             {
                 Hide = false;
                 updateFinger();

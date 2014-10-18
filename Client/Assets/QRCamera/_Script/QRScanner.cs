@@ -61,10 +61,12 @@ public class QRScanner : MonoBehaviour, ITrackerEventHandler {
 			//analyze tempText
 			//finds the adress from a string as xxx.xxx.xxx.xxx:{y}+
 			//string adress = findAndMatch (tempText, "BuildingBlocksServer=([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})(?:\\:[0-9]{1,5})");
-            string adress = findAndMatch(tempText, "http://is.gd/bloxar#([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})(?:\\:[0-9]{1,5})");
+            //string adress = findAndMatch(tempText, "http://is.gd/bloxar#([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})(?:\\:[0-9]{1,5})");
+            string adress = findAndMatch(tempText, "http://tinyurl.com/bloxar#([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})(?:\\:[0-9]{1,5})");
 			//does the same for port
 			//string port = findAndMatch (tempText, "BuildingBlocksServer=(?:[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\:)([0-9]{1,5})");
-            string port = findAndMatch(tempText, "http://is.gd/bloxar#(?:[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\:)([0-9]{1,5})");
+            //string port = findAndMatch(tempText, "http://is.gd/bloxar#(?:[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\:)([0-9]{1,5})");
+            string port = findAndMatch(tempText, "http://tinyurl.com/bloxar#(?:[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\:)([0-9]{1,5})");
 
 			//if either is null, the tempText was not of the proper format (false qrcode found)
 			if((port != null && port != "")){

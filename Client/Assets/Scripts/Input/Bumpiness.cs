@@ -22,12 +22,14 @@ namespace BuildingBlocks.Input
 
         private Magnetometer magnetometer;
         private Luminance luminance;
+        private Accelerometer accelerometer;
 
         void Start()
         {
             history = new Queue<float>(HISTORY_SIZE);
             magnetometer = gameObject.AddComponent<Magnetometer>();
             luminance = gameObject.AddComponent<Luminance>();
+            accelerometer = gameObject.AddComponent<Accelerometer>();
         }
 
         public void Reset()
@@ -37,10 +39,12 @@ namespace BuildingBlocks.Input
 
         public bool CheckBump(out float score)
         {
-            float bumpiness = (
-                (LUMINANCE_FACTOR * luminance.Score) *
-                (MAGNETOMETER_FACTOR * magnetometer.Score)
-            ) * 10;
+            float bumpiness = accelerometer.IsUpright 
+                ? (
+                    (LUMINANCE_FACTOR * luminance.Score) *
+                    (MAGNETOMETER_FACTOR * magnetometer.Score)
+                  ) * 10 
+                : 0;
 
             if (history.Count == HISTORY_SIZE)
             {

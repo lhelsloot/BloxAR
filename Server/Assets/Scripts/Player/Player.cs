@@ -7,6 +7,8 @@ namespace BuildingBlocks.Player
 {
     public class Player : BuildingBlocksBehaviour, IPlayer
     {
+        public static Player LocalPlayer;
+
         public ITeam Team { get; set; }
         public INetworkPlayer NetworkPlayer { get; private set; }
         public ICubeFinger CubeFinger { get; private set; }
@@ -27,7 +29,13 @@ namespace BuildingBlocks.Player
         
         public void GiveBlock()
         {
-            SetBlock(new Block());
+            Block block;
+            do
+            {
+                block = new Block();
+            }
+            while (this.Block != null && block.Color == this.Block.Color);
+            SetBlock(block);
         }
 
         public bool CombineBlock(IPlayer other)
@@ -46,7 +54,7 @@ namespace BuildingBlocks.Player
             GameObject prefab = Resources.Load("CubeFinger") as GameObject;
             GameObject cubeFinger = Network.Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, 1) as GameObject;
 
-            CubeFinger = cubeFinger.GetComponent<CubeFingerLoader>().Finger;
+            CubeFinger = cubeFinger.GetComponent<CubeFingerBridge>().Finger;
             CubeFinger.CubeFinger finger = CubeFinger as CubeFinger.CubeFinger;
             finger.SetParent(Team.Target);
             finger.SetPlayer(NetworkPlayer);
