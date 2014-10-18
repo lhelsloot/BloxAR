@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Tutorial : MonoBehaviour {
 	private const float xloc = 0.15f;
-	private const float yloc = 0.3f;
+	private const float yloc = 0.25f;
 	private const float height = 0.5f;
-	private const float width= 0.7f;
+	private const float width = 0.7f;
 
 	private const float buttonHeight = 0.05f;
-	private const float buttonWidth = 0.25f;
+	private const float buttonWidth = 0.4f;
 
 	public Texture2D RedPhone;
 	public Texture2D YellowPhone;
@@ -50,9 +50,11 @@ public class Tutorial : MonoBehaviour {
 		float buttonWidthAbsolute = buttonWidth * Screen.width;
 		float buttonx =  Screen.height*height - buttonHeightAbsolute* 1.5f;
 		float buttony = (Screen.width*width - buttonWidthAbsolute) * 0.5f;
-		
-		if (GUI.Button (new Rect (buttony, buttonx, buttonWidthAbsolute, buttonHeightAbsolute), "Close"))
-			Destroy (this);
+
+        if (GUI.Button(new Rect(buttony, buttonx, buttonWidthAbsolute, buttonHeightAbsolute), "Close", BuildingBlocks.GUI.GUIStyles.ButtonStyle(buttonWidth, buttonHeight)))
+        {
+            Destroy(this);
+        }
 	}
 
 	void drawNumber(int number){

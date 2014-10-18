@@ -13,7 +13,17 @@ namespace BuildingBlocks.CubeFinger
             QCARBehaviour qcarBehaviour = FindObjectOfType<QCARBehaviour>();
             if (qcarBehaviour)
             {
+                qcarBehaviour.UnregisterTrackerEventHandler(this);
                 qcarBehaviour.RegisterTrackerEventHandler(this);
+            }
+        }
+
+        void OnDisconnectedFromServer()
+        {
+            QCARBehaviour qcarBehaviour = FindObjectOfType<QCARBehaviour>();
+            if (qcarBehaviour)
+            {
+                qcarBehaviour.UnregisterTrackerEventHandler(this);
             }
         }
 
